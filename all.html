@@ -6,10 +6,12 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
     <link href="./css/common.css" type="text/css" rel="stylesheet">
     <link href="./css/index.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery.js"> </script>
+    <script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
 <!--顶部搜索+筛选-->
-<div class="fix-top">
+<div class="fix-top" id="choose">
     <div class="common-head">
         <i class="go-back"></i>
         <h1>全部</h1>
@@ -19,15 +21,15 @@
     </div>
     <div class="choose">
         <ul class="choose-condition f-box">
-            <li class="flex-item">全部类型<i></i></li>
-            <li class="flex-item">所在地区<i></i></li>
-            <li class="flex-item">条件筛选<i></i></li>
+            <li data-number="0" class="condition-item flex-item"> 全部类型<i></i></li>
+            <li data-number="0" class="condition-item flex-item">所在地区<i></i></li>
+            <li data-number="0" class="condition-item flex-item">条件筛选<i></i></li>
         </ul>
     </div>
 </div>
 <!--筛选弹窗-->
 <div class="choose-min-1" style="display: none">
-    <ul class="all-list" style="display: none">
+    <ul class="all-list choose-item" style="display: none">
         <li class="active">
             <span>全部</span>
             <em>（7）</em>
@@ -37,7 +39,7 @@
             <em>（6）</em>
         </li>
     </ul>
-    <ul class="place-list" style="display: none">
+    <ul class="place-list choose-item" style="display: none">
         <li class="place-list-li active">
             <div class="place-left">
                 <span>全部</span>
@@ -62,91 +64,151 @@
                 </li>
             </ul>
         </li>
+        <li class="place-list-li">
+            <div class="place-left">
+                <span>全部</span>
+                <em>(7)</em>
+            </div>
+            <ul class="second-menu">
+                <li>
+                    <span>重庆市</span>
+                    <em>(7)</em>
+                </li>
+            </ul>
+        </li>
+        <li class="place-list-li">
+            <div class="place-left">
+                <span>全部</span>
+                <em>(7)</em>
+            </div>
+            <ul class="second-menu">
+                <li>
+                    <span>重庆市</span>
+                    <em>(7)</em>
+                </li>
+            </ul>
+        </li>
+        <li class="place-list-li">
+            <div class="place-left">
+                <span>全部</span>
+                <em>(7)</em>
+            </div>
+            <ul class="second-menu">
+                <li>
+                    <span>重庆市</span>
+                    <em>(7)</em>
+                </li>
+            </ul>
+        </li>
+        <li class="place-list-li">
+            <div class="place-left">
+                <span>全部</span>
+                <em>(7)</em>
+            </div>
+            <ul class="second-menu">
+                <li>
+                    <span>重庆市</span>
+                    <em>(7)</em>
+                </li>
+            </ul>
+        </li>
+        <li class="place-list-li">
+            <div class="place-left">
+                <span>全部</span>
+                <em>(7)</em>
+            </div>
+            <ul class="second-menu">
+                <li>
+                    <span>重庆市</span>
+                    <em>(7)</em>
+                </li>
+            </ul>
+        </li>
+        <li class="place-list-li">
+            <div class="place-left">
+                <span>全部</span>
+                <em>(7)</em>
+            </div>
+            <ul class="second-menu">
+                <li>
+                    <span>重庆市</span>
+                    <em>(7)</em>
+                </li>
+            </ul>
+        </li>
+        <li class="place-list-li">
+            <div class="place-left">
+                <span>全部</span>
+                <em>(7)</em>
+            </div>
+            <ul class="second-menu">
+                <li>
+                    <span>重庆市</span>
+                    <em>(7)</em>
+                </li>
+            </ul>
+        </li>
+        <li class="place-list-li">
+            <div class="place-left">
+                <span>全部</span>
+                <em>(7)</em>
+            </div>
+            <ul class="second-menu">
+                <li>
+                    <span>重庆市</span>
+                    <em>(7)</em>
+                </li>
+            </ul>
+        </li>
+        <li class="place-list-li">
+            <div class="place-left">
+                <span>全部</span>
+                <em>(7)</em>
+            </div>
+            <ul class="second-menu">
+                <li>
+                    <span>重庆市</span>
+                    <em>(7)</em>
+                </li>
+            </ul>
+        </li>
+
     </ul>
-    <div class="condition-list" style="display: none">
-        <div class="one-buy hot-search">
+    <ul class="condition-list choose-item" style="display: none">
+        <li class="one-buy hot-search">
             <h1>拍卖/变卖</h1>
             <ul class="clearfix">
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
+                <li>和田玉</li>
+                <li>和田玉</li>
+                <li>和田玉</li>
+                <li>和田玉</li>
+                <li>和田玉</li>
+                <li>和田玉</li>
+                <li>和田玉</li>
             </ul>
-        </div>
-        <div class="two-buy hot-search">
+        </li>
+        <li class="two-buy hot-search">
             <h1>拍卖/变卖</h1>
             <ul class="clearfix">
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
+                <li>和田玉</li>
+                <li>和田玉</li>
+                <li>和田玉</li>
             </ul>
-        </div>
-        <div class="three-buy hot-search">
+        </li>
+        <li class="three-buy hot-search">
             <h1>拍卖/变卖</h1>
             <ul class="clearfix">
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
-                <li>
-                    <a href="">和田玉</a>
-                </li>
+                <li>和田玉</li>
+                <li>和田玉</li>
+                <li>和田玉</li>
+                <li>和田玉</li>
             </ul>
-        </div>
+        </li>
         <div class="choose-button f-box">
             <div class="flex-item">清除</div>
             <div class="flex-item choose-sure">确定</div>
         </div>
-    </div>
+    </ul>
 </div>
 <ul class="hote fix-hote">
     <li class="clearfix">

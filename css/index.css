@@ -298,6 +298,7 @@ body{
     color: #4c4c4c;
     background: #fff;
     margin-bottom: 10px;
+    position: relative;
 }
 .hot-search li a{
     display: block;
@@ -319,6 +320,7 @@ body{
 }
 .choose{
     background: #fff;
+    border-bottom: 1px solid #ebebeb;
 }
 .choose .choose-condition{
     padding:12px 15px;
@@ -337,6 +339,13 @@ body{
     background: url("../img/down.png") no-repeat center;
     background-size: 9px 5px;
     margin-left: 8px;
+}
+.choose-condition .active{
+    color: #c21a00;
+}
+.choose-condition .active i{
+    background: url("../img/up.png") no-repeat center;
+    background-size: 9px 5px;
 }
 .choose-min-1{
     position: fixed;
@@ -366,6 +375,22 @@ body{
     background: #fff;
     width: 50%;
     position: relative;
+    height: 70%;
+    overflow: scroll;
+}
+.condition-list .active{
+    border-color: #c21a00;
+}
+.condition-list .active::after{
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    background: url("../img/right.png") no-repeat right bottom;
+    background-size: 20px;
+    right: -3px;
+    bottom: -4px;
+    position: absolute;
 }
 .place-list .place-list-li{
     line-height: 45px;
@@ -425,6 +450,10 @@ body{
 }
 .court-list .place-list{
     height: 100%;
+    overflow: inherit;
+}
+.court-list .second-menu{
+    overflow: scroll;
 }
 .court-list .active{
     color: #333;
@@ -464,10 +493,12 @@ body{
     height: 70%;
     overflow: scroll;
 }
+.court-page .second-menu span{
+    display: block;
+}
 /*法院主页*/
 .court-home{
     background: #fff;
-    border-bottom: 1px solid #ebebeb;
 }
 .court-home img{
     padding: 20px 15px;
@@ -478,7 +509,108 @@ body{
 .court-home .court-name{
     padding-left: 95px;
 }
-
-
-
-
+.court-title{
+    font-size: 17px;
+    color: #333;
+    margin-top: 20px;
+}
+.court-desc{
+    font-size: 12px;
+    color: #666;
+    margin-top: 15px;
+    line-height: 15px;
+}
+.court-desc i{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background: url("../img/paper.png") no-repeat top center;
+    background-size: 10px ;
+}
+.court-desc span{
+    display: inline-block;
+}
+.court-home .choose{
+    border-bottom: 1px solid #ebebeb;
+}
+.choose-court{
+    height: 45px;
+    text-align: center;
+    color: #4d4d4d;
+    font-size: 14px;
+    background: #fafafa;
+    border-bottom: 1px solid #ebebeb;
+}
+.choose-court li{
+    height: 25px;
+    margin: 10px 0;
+    line-height: 25px;
+    position: relative;
+}
+.first-court {
+    border-right: 1px solid #ebebeb;
+}
+.court-home .choose-active{
+    color: #c21a00;
+}
+.court-home .choose-active::after{
+    display: block;
+    width: 100%;
+    height: 2px;
+    content: '';
+    background: #c21a00;
+    bottom: -10px;
+    left: 0;
+    position: absolute;
+}
+.court-home .fix-hote{
+    padding-top: 226px;
+}
+.court-home .choose-min-1{
+    top: 227px;
+}
+.court-home .condition-list{
+    height: 50%;
+}
+.choose-run{
+    border-top: 1px solid #ebebeb;
+}
+.choose-run li{
+    line-height: 45px;
+    background-color: #fff;
+    border-bottom: 1px solid #ebebeb;
+    font-size: 13px;
+    color: #333;
+    padding: 0 15px;
+}
+.choose-run .active{
+    color: #c21a00;
+    background: #fafafa;
+}
+.home-notice{
+    padding: 205px 20px 20px 20px;
+    background: #f7f7f7;
+}
+.home-notice li{
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #ebebeb;
+    margin-bottom: 15px;
+}
+.home-notice li .notice-name{
+    font-size: 15px;
+    color: #333;
+    padding: 15px;
+    border-bottom: 1px solid #ebebeb;
+}
+.home-notice li p{
+    font-size: 12px;
+    color: #666;
+    padding: 10px 15px 5px 15px;
+}
+.home-notice li .home-notice-time{
+    padding-bottom: 10px;
+}
+.choose-run .active{
+    border-color: #ebebeb;
+}
