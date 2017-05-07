@@ -614,3 +614,6 @@ body{
 .choose-run .active{
     border-color: #ebebeb;
 }
+.home-item img{
+    padding: 0;
+}

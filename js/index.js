@@ -38,6 +38,10 @@ $(function () {
         $(".home-min .home-item").eq($(this).index()).show().siblings().hide();
         if($(this).index() == 1){
             $(".choose").hide();
+            $(".choose-min-1").hide();
+           // $(".choose-court li").removeClass('choose-active');
+            $(".choose-condition li").removeClass('active');
+            $(".choose-condition li").attr("data-number", "0");
         }else {
             $(".choose").show();
         }
