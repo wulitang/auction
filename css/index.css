@@ -64,6 +64,17 @@ body{
     /*background: #ce4833;*/
     margin: 15px auto;
 }
+.menu li img{
+    display: block;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-size: 100% 100%;
+    /*border:1px solid #c21a00;*/
+    /*background: #ce4833;*/
+    margin: 15px auto;
+    border: none;
+}
 .menu li span{
     font-size: 12px;
     color: #4c4c4c;
@@ -256,9 +267,9 @@ body{
 }
 /*搜索页面*/
 .search input{
-    height: 38px;
-    line-height: 38px;
-    width: 64%;
+    /*height: 38px;*/
+    /*line-height: 38px;*/
+    width: 100%;
     padding: 0 12%;
     display: inline-block;
     border-radius: 38px;
@@ -299,8 +310,45 @@ body{
     background: #fff;
     margin-bottom: 10px;
     position: relative;
+    margin-right: 1.5%;
+}
+.search .mint-searchbar{
+    padding: 0;
+}
+.search .mint-searchbar{
+    background-color:rgba(255, 255, 255, 0);
+}
+.search .mint-searchbar-cancel{
+    color: #fff;
+    line-height: 20px;
+}
+.search .mintui-search{
+    display: none;
+}
+.search .mint-searchbar-inner{
+    border-radius: 38px;
+}
+.search .mint-searchbar-inner{
+   height: 30px;
+}
+.hot-search li:nth-of-type(4n){
+    margin-right: 0;
 }
 .hot-search li a{
+    display: block;
+}
+.indx-search{
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    height: 100%;
+    z-index: 22;
+    background: #f7f7f7;
+    display: none;
+    overflow: scroll;
+}
+.show{
     display: block;
 }
 /*筛选*/
@@ -375,7 +423,7 @@ body{
     background: #fff;
     width: 50%;
     position: relative;
-    height: 70%;
+    height: 55%;
     overflow: scroll;
 }
 .condition-list .active{
