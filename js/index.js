@@ -113,13 +113,13 @@ var child1 = new Vue({
             });
         },
         //热门搜索+显示搜索框
-        showSearch: function (e) {
+        showSearch: function () {
             var url;
             this.isShow=true;
             var _this=this;
-            var isSearch = e.target.getAttribute('data-num');
+            //var isSearch = e.target.getAttribute('data-num');
             this.goodsShow = isSearch;
-            if(isSearch == 1){
+            if(1){
                 //热门搜索请求接口
                  url = 'http://211.149.156.151:81/api/Index/searchHot.html'
             }else{
