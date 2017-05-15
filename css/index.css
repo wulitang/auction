@@ -298,7 +298,7 @@ body{
 
 }
 .hot-search li{
-    width: 23%;
+    width: 21%;
     height: 34px;
     text-align: center;
     border: 1px solid #ededed;
@@ -311,6 +311,7 @@ body{
     margin-bottom: 10px;
     position: relative;
     margin-right: 1.5%;
+    padding: 1%;
 }
 .search .mint-searchbar{
     padding: 0;
@@ -347,6 +348,9 @@ body{
     background: #f7f7f7;
     display: none;
     overflow: scroll;
+}
+.mint-searchbar::before{
+    display: none;
 }
 .show{
     display: block;

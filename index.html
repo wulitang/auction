@@ -43,10 +43,14 @@
         </div>
         <div class="court-right">
             <div class="court-right-1">
-                <img src="img/gongyi.png">
+                <a href="/auction/all.html?goodsType=2">
+                    <img src="img/gongyi.png">
+                </a>
             </div>
             <div class="court-right-2">
+                <a href="/auction/all.html?goodsType=3">
                 <img src="img/yishu.png">
+                </a>
             </div>
 
         </div>
@@ -54,12 +58,12 @@
     <!--海关拍卖-->
     <div class="entrust clearfix">
         <div class="customs">
-            <a href="">
+            <a href="/auction/all.html?goodsType=4">
                 <img src="img/customs.png">
             </a>
         </div>
         <div class="society">
-            <a href="">
+            <a href="/auction/all.html?goodsType=5">
                 <img src="img/society.png">
             </a>
         </div>
@@ -67,7 +71,7 @@
     <!--热门标的-->
     <div class="hote-top">
         <img src="img/hote.png">
-        <a href="">查看更多</a>
+        <a href="all.html">查看更多</a>
     </div>
     <mt-loadmore :bottom-method="loadBottom" ref="loadmore">
         <ul class="hote">
@@ -77,7 +81,7 @@
                     <div class="desc">
                         <div class="title over-two" v-text="lists.goodsName"></div>
                         <div class="pic over">起拍价格：<em v-text="lists.price"></em><i>元</i></div>
-                        <div class="time over"><em>开始时间：</em>{{lists.goodsDates}}</div>
+                        <div class="time over"><em>开始时间：</em>{{timeForamt(lists.goodsDates)}}</div>
                     </div>
                 </a>
             </li>
@@ -105,7 +109,9 @@
             <div class="hot-search">
                 <h3>热门搜索</h3>
                 <ul class="clearfix" >
-                    <li v-for="item in hotSearch" v-text="item.key"></li>
+                    <li v-for="item in hotSearch">
+                        <a class="over" v-bind:href="'/auction/all.html?key=' + item.key " v-text="item.key"></a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -117,8 +123,8 @@
             </div>
             <div class="hot-search">
                 <ul class="clearfix">
-                    <li v-for="item in hotSearch" class="over" v-bind:data-id=item.id>
-                        <a v-bind:href="'/auction/court.html?cityId=' + item.id " v-text="item.cityName"></a>
+                    <li v-for="item in hotSearch" v-bind:data-id=item.id>
+                        <a class="over" v-bind:href="'/auction/court.html?cityId=' + item.id " v-text="item.cityName"></a>
                     </li>
                 </ul>
             </div>
@@ -131,5 +137,6 @@
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/index-vue.js"></script>
 </body>
 </html>

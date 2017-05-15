@@ -6,14 +6,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
     <link href="./css/common.css" type="text/css" rel="stylesheet">
     <link href="./css/index.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery.js"> </script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui@1/lib/style.css">
 </head>
 <body>
+<div id="all-list-all">
 <!--顶部搜索+筛选-->
 <div class="fix-top" id="choose">
     <div class="common-head">
-        <i class="go-back"></i>
+        <i class="go-back"  onclick="javascript:history.back(-1);"></i>
         <h1>全部</h1>
         <div class="search">
             <a href="" class="jump-search">请输入拍品名称</a>
@@ -27,16 +28,14 @@
         </ul>
     </div>
 </div>
+<!--获取url城市id-->
+
 <!--筛选弹窗-->
 <div class="choose-min-1" style="display: none">
     <ul class="all-list choose-item" style="display: none">
-        <li class="active">
-            <span>全部</span>
-            <em>（7）</em>
-        </li>
-        <li>
-            <span>全部</span>
-            <em>（6）</em>
+        <li v-for="types in type">
+            <span>{{types.name}}</span>
+            <em>{{types.co}}</em>
         </li>
     </ul>
     <ul class="place-list choose-item" style="display: none">
@@ -176,32 +175,28 @@
     </ul>
     <ul class="condition-list choose-item" style="display: none">
         <li class="one-buy hot-search">
-            <h1>拍卖/变卖</h1>
-            <ul class="clearfix">
-                <li>和田玉</li>
-                <li>和田玉</li>
-                <li>和田玉</li>
-                <li>和田玉</li>
-                <li>和田玉</li>
-                <li>和田玉</li>
-                <li>和田玉</li>
+            <h1>拍卖方式</h1>
+            <ul class="clearfix" style="font-size: 0;">
+                <li>首拍</li>
+                <li>二拍</li>
+                <li>三拍</li>
+                <li>四拍</li>
+                <li>五拍</li>
             </ul>
         </li>
         <li class="two-buy hot-search">
-            <h1>拍卖/变卖</h1>
+            <h1>购买方式</h1>
             <ul class="clearfix">
-                <li>和田玉</li>
-                <li>和田玉</li>
-                <li>和田玉</li>
+                <li>不限购</li>
+                <li>可贷款</li>
             </ul>
         </li>
         <li class="three-buy hot-search">
-            <h1>拍卖/变卖</h1>
+            <h1>状态</h1>
             <ul class="clearfix">
-                <li>和田玉</li>
-                <li>和田玉</li>
-                <li>和田玉</li>
-                <li>和田玉</li>
+                <li>还未开始</li>
+                <li>进行中</li>
+                <li>已结束</li>
             </ul>
         </li>
         <div class="choose-button f-box">
@@ -210,34 +205,52 @@
         </div>
     </ul>
 </div>
-<ul class="hote fix-hote">
-    <li class="clearfix">
-        <img src="./img/picture.png">
-        <div class="desc">
-            <div class="title over-two">此处为拍品名称标题，标题预留两行，文字溢出用...
-            </div>
-            <div class="pic over">起拍价格：<em>29.00</em><i>万</i></div>
-            <div class="time over"><em>开始时间：</em>04月27日 10:00开始</div>
-        </div>
-    </li>
-    <li class="clearfix">
-        <img src="./img/picture.png">
-        <div class="desc">
-            <div class="title over-two">此处为拍品名称标题，标题预留两行，文字溢出用...
-            </div>
-            <div class="pic over">起拍价格：<em>29.00</em><i>万</i></div>
-            <div class="time over"><em>开始时间：</em>04月27日 10:00开始</div>
-        </div>
-    </li>
-    <li class="clearfix time-over">
-        <img src="./img/picture.png">
-        <div class="desc">
-            <div class="title over-two">此处为拍品名称标题，标题预留两行，文字溢出用...
-            </div>
-            <div class="pic over">起拍价格：<em>29.00</em><i>万</i></div>
-            <div class="time over"><em>开始时间：</em>04月27日 10:00开始</div>
-        </div>
-    </li>
-</ul>
+    <!--获取url-->
+    <div class="hide cityId">{{decodeURI(getPar("key"))}}</div>
+    <div class="hide goodsType">{{getPar("goodsType")}}</div>
+    <mt-loadmore :bottom-method="loadBottom"  ref="loadmore"  @bottom-status-change="handleBottomChange">
+        <ul class="hote">
+            <li v-for="lists in list" class="clearfix">
+                <a v-bind:href="lists.goodsUrl">
+                    <img v-bind:src="lists.img">
+                    <div class="desc">
+                        <div class="title over-two" v-text="lists.goodsName"></div>
+                        <div class="pic over">起拍价格：<em v-text="lists.price"></em><i>元</i></div>
+                        <div class="time over"><em>开始时间：</em>{{timeForamt(lists.goodsDates)}}</div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </mt-loadmore>
+</div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/all-vue.js"></script>
+<script>
+    //all页面异步请求
+//    $.ajax({
+//        url:"http://211.149.156.151:81/api/Index/type.html",
+//        dataType: 'jsonp',
+//        data: {
+//            page:1,
+//            pageSize:"10"
+//        },
+//        type: "post",
+//        jsonp: 'callback',
+//        success: function (data) {
+//            for(var i=0;i<data.data.length;i++){
+//                var newStr=''+'<li><span>'+data.name+'</span><em>'+data.co+'</em></li>';
+//            }
+//            console.log(data.data);
+//            $(".all-list ").append(newStr)
+//        },
+//        error: function () {
+//            console.log('请求错误');
+//        }
+//    });
+</script>
 </body>
 </html>

@@ -6,11 +6,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
     <link href="./css/common.css" type="text/css" rel="stylesheet">
     <link href="./css/index.css" type="text/css" rel="stylesheet">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui@1/lib/style.css">
 </head>
 <body class="court-page">
 <!--顶部搜索-->
 <div class="common-head">
-    <i class="go-back"></i>
+    <i class="go-back" onclick="javascript:history.back(-1);"></i>
     <h1>法院列表</h1>
 </div>
 <!--court list-->
@@ -31,5 +33,11 @@
         </li>
     </ul>
 </div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/court-vue.js"></script>
 </body>
 </html>
