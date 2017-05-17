@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
     <link href="./css/common.css" type="text/css" rel="stylesheet">
     <link href="./css/index.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="js/jquery.js"> </script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <!-- 引入样式 -->
     <link rel="stylesheet" href="https://unpkg.com/mint-ui@1/lib/style.css">
     <style type="text/css">
         /*防止刷新页面出现vuejs变量名称*/
@@ -35,8 +34,8 @@
         </div>
         <!--选项卡切换-->
         <ul class="f-box choose-court">
-            <li class="flex-item first-court choose-active">标的（7）</li>
-            <li class="flex-item">公号（7）</li>
+            <li class="flex-item first-court choose-active">标的</li>
+            <li class="flex-item" @click="getnotice">公告</li>
         </ul>
         <div class="choose">
             <ul class="choose-condition f-box">
@@ -134,45 +133,16 @@
             </mt-loadmore>
         </div>
         <ul class="home-item home-notice" style="display: none">
-            <li>
-                <a href="notice-detail.html">
+            <li v-for="todo in notice">
+                <a v-bind:href="'/auction/auction/notice-detail.html?noticeId=' + todo.id ">
                     <div class="notice-name over-two">
-                        此处为公告标题，标题保留两行文字如果文字溢
-                        出用...
+                        {{todo.title}}
                     </div>
                     <p class="home-notice-place over">
-                        处置单位：重庆市高级人民法院
+                        处置单位：{{todo.company}}
                     </p>
                     <p class="home-notice-time over">
-                        公告时间：2017-04-27 10:00
-                    </p>
-                </a>
-            </li>
-            <li>
-                <a href="notice-detail.html">
-                    <div class="notice-name over-two">
-                        此处为公告标题，标题保留两行文字如果文字溢
-                        出用...
-                    </div>
-                    <p class="home-notice-place over">
-                        处置单位：重庆市高级人民法院
-                    </p>
-                    <p class="home-notice-time over">
-                        公告时间：2017-04-27 10:00
-                    </p>
-                </a>
-            </li>
-            <li>
-                <a href="notice-detail.html">
-                    <div class="notice-name over-two">
-                        此处为公告标题，标题保留两行文字如果文字溢
-                        出用...
-                    </div>
-                    <p class="home-notice-place over">
-                        处置单位：重庆市高级人民法院
-                    </p>
-                    <p class="home-notice-time over">
-                        公告时间：2017-04-27 10:00
+                        公告时间：{{timeForamt(todo.noticeDate)}}
                     </p>
                 </a>
             </li>
@@ -180,9 +150,9 @@
     </div>
 </div>
 <script type="text/javascript" src="js/jquery.js"></script>
-<!--<script type="text/javascript" src="js/vue.js"></script>-->
-<!--&lt;!&ndash; 引入组件库 &ndash;&gt;-->
-<!--<script src="https://unpkg.com/mint-ui/lib/index.js"></script>-->
+<script type="text/javascript" src="js/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 <script>
     //获取url上面的参数，有类似方法getQueryString
@@ -205,6 +175,6 @@
     };
     var courtId = getPar("courtId");
 </script>
-<!--<script type="text/javascript" src="js/home-vue.js"></script>-->
+<script type="text/javascript" src="js/home-vue.js"></script>
 </body>
 </html>

@@ -1,17 +1,10 @@
-var page = 1;
-var typeId, goodsType,auctionMode,purchaseMethod,Status,cityId;
 var child1 = new Vue({
-    el: '#court-page',
+    el: '#notice',
     data: {
-        court: [],
-        getCitys:[],
-        choosecitys:[],
-        list: [],
-        notice:[],
+        noticeDerail: [],
     },
     created: function () {
-        this.getPlace();
-        this.getType();
+        this.getDetail();
     },
     methods: {
         //时间格式化
@@ -19,21 +12,20 @@ var child1 = new Vue({
             return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
         },
         //获取type样式
-        getType(){
+        getDetail(){
             var _this = this;
             //使用ajax
             $.ajax({
-                url: "http://211.149.156.151:81/api/Index/type.html",
+                url: "http://211.149.156.151:81/api/Index/noticeInf.html",
                 dataType: 'jsonp',
                 data: {
-                    page: 1,
-                    pageSize: "10"
+                    noticeId: noticeId,
                 },
                 type: "post",
                 jsonp: 'callback',
                 success: function (data) {
-                    //console.log(data.data);
-                    _this.type = data.data;
+                    console.log(data.data);
+                    _this.noticeDerail = data.data;
                 },
                 error: function () {
                     console.log('请求错误');

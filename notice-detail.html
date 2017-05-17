@@ -10,20 +10,41 @@
 <body class="notice">
 <!--公共顶部-->
 <div class="common-head">
-    <i class="go-back"></i>
+    <i class="go-back"  onclick="javascript:history.back(-1);"></i>
     <h1>公告详情</h1>
 </div>
 <!--主要内容-->
-<div class="notice-min">
-    <h1>此处为公告标题，公告详情标题字数不限此处为公告标题，公告详情标题字数不限</h1>
+<div class="notice-min" id="notice">
+    <h1 v-text="noticeDerail.title"></h1>
     <div class="notice-time">
-        <p>处置单位：重庆市高级人民法院</p>
-        <p>公告时间：2017-04-27 10:00</p>
+        <p>处置单位：{{noticeDerail.company}}</p>
+        <p>公告时间：{{timeForamt(noticeDerail.noticeDate)}}</p>
     </div>
-    <p>此处为公告详情，公告详情为富文本内容！此处为公告
-        详情，公告详情为富文本内容！此处为公告详情，公告
-        详情为富文本内容！此处为公告详情，公告详情为富文
-        本内容！</p>
+    <p>{{noticeDerail.content}}</p>
 </div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script>
+    //获取url上面的参数，有类似方法getQueryString
+    function getPar (par) {
+        //获取当前URL
+        var local_url = document.location.href;
+        //获取要取得的get参数位置
+        var get = local_url.indexOf(par + '=');
+        if (get == -1) {
+            return false;
+        }
+        //截取字符串
+        var get_par = local_url.slice(par.length + get + 1);
+        //判断截取后的字符串是否还有其他get参数
+        var nextPar = get_par.indexOf('&');
+        if (nextPar != -1) {
+            get_par = get_par.slice(0, nextPar);
+        }
+        return get_par;
+    };
+    var noticeId = getPar("noticeId");
+</script>
+<script type="text/javascript" src="js/detail-vue.js"></script>
 </body>
 </html>
