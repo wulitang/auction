@@ -4,7 +4,7 @@ var child1 = new Vue({
     el: '#all-list-all',
     data: {
         list: [],
-        type: [],
+        type: [{id: "", name: "全部", co: ""}],
         citylist:[],
         courtlist:[],
         getCitys:[],
@@ -35,7 +35,9 @@ var child1 = new Vue({
                 jsonp: 'callback',
                 success: function (data) {
                     //console.log(data.data);
-                    _this.type = data.data;
+                    data.data.forEach(function (item,index) {
+                        _this.type.push(item);
+                    });
                 },
                 error: function () {
                     console.log('请求错误');

@@ -3,7 +3,13 @@ var listdata=[];
 var child1 = new Vue({
     el: '#app-index',
     data: {
-        "subjects": [],
+        "subjects": [
+            {
+                "id":"",
+                "name":"全部",
+                "logo":"/auction/auction/img/all.png"
+            }
+        ],
         "isShow": false,
         "goodsShow":"",
         "hotSearch":[],
@@ -34,7 +40,10 @@ var child1 = new Vue({
                 jsonp: 'callback',
                 success: function (data) {
                     console.log(data.data);
-                    _this.subjects = data.data.type;
+                    //alldata = alldata.push(data.data.type);
+                    data.data.type.forEach(function (item,index) {
+                        _this.subjects.push(item)
+                    });
                     _this.list = data.data.hot.list
                     // page++;
                 },
@@ -58,10 +67,9 @@ var child1 = new Vue({
                 type: "post",
                 jsonp: 'callback',
                 success: function (data) {
-                    var new_data = [];
                     console.log(_this.list);
                     data.data.hot.list.forEach(function (item,index) {
-                        new_data = _this.list.push(item)
+                        _this.list.push(item)
                     });
                     page++;
                     // 若数据已全部获取完毕

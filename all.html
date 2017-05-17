@@ -8,6 +8,12 @@
     <link href="./css/index.css" type="text/css" rel="stylesheet">
     <!-- 引入样式 -->
     <link rel="stylesheet" href="https://unpkg.com/mint-ui@1/lib/style.css">
+    <style type="text/css">
+        /*防止刷新页面出现vuejs变量名称*/
+        [v-cloak] {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 <div id="all-list-all">
@@ -28,9 +34,7 @@
         </ul>
     </div>
 </div>
-<!--获取url城市id-->
-
-<!--筛选弹窗-->
+    <!--筛选弹窗-->
 <div class="choose-min-1" style="display: none">
     <ul class="all-list choose-item" style="display: none">
         <li v-for="types in type" :id="types.id" @click="getAll">
