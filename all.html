@@ -136,6 +136,23 @@
     var cityId = getPar("cityId");
     var goodsType = getPar("goodsType");
     var typeId = getPar("typeId");
+    var toptitle = "全部";
+    if(typeId == 1 ){
+        toptitle ="法院拍卖";
+    }
+    if(typeId == 2 ){
+        toptitle ="公益拍卖";
+    }
+    if(typeId == 3 ){
+        toptitle ="艺术拍卖";
+    }
+    if(typeId == 4 ){
+        toptitle ="海关拍卖";
+    }
+    if(typeId == 5 ){
+        toptitle ="社会委托拍卖";
+    }
+    $(".common-head").find("h1").html(toptitle);
 </script>
 <script type="text/javascript" src="js/all-vue.js"></script>
 </body>
