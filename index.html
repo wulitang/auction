@@ -29,7 +29,7 @@
     <ul class="menu clearfix">
         <li v-for="todo in subjects" v-bind:id="todo.id">
             <div>
-                <a v-bind:href="'/auction/auction/all.html?typeId=' + todo.id ">
+                <a v-bind:href="'/auction/auction/all.html?cityId=&goodsType=&searchKey=&typeId=' + todo.id ">
                     <img v-bind:src="todo.logo" v-bind:alt="todo.name">
                     <span v-text="todo.name"></span>
                 </a>
@@ -73,7 +73,7 @@
     <!--热门标的-->
     <div class="hote-top">
         <img src="img/hote.png">
-        <a href="all.html">查看更多</a>
+        <a href="all.html?typeId=&cityId=&goodsType=&searchKey=">查看更多</a>
     </div>
     <mt-loadmore :bottom-method="loadBottom" ref="loadmore">
         <ul class="hote">

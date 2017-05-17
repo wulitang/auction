@@ -54,7 +54,7 @@ $(function () {
     });
     //搜索跳转
     $(".search").on("click","em",function () {
-        var searchKey = $(".search").find("input").text();
+        var searchKey = $(".search").find("input").val();
         window.location.href = "/auction/auction/all.html?searchKey="+searchKey;
     });
     //法院列表
