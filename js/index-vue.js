@@ -77,21 +77,11 @@ var child1 = new Vue({
             });
         },
         //热门搜索+显示搜索框
-        showSearch: function (e) {
-            var url;
+        showSearch: function () {
             this.isShow=true;
             var _this=this;
-            var isSearch = e.target.getAttribute('data-num');
-            this.goodsShow = isSearch;
-            if(isSearch == 1){
-                //热门搜索请求接口
-                url = 'http://211.149.156.151:81/api/Index/searchHot.html'
-            }else{
-                //城市列表请求接口
-                url = 'http://211.149.156.151:81/api/Index/city.html'
-            }
             $.ajax({
-                url:url,
+                url:"http://211.149.156.151:81/api/Index/city.html",
                 dataType: 'jsonp',
                 data: {},
                 type: "post",

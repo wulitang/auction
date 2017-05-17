@@ -15,8 +15,8 @@ body{
 }
 .search{
     width: 100%;
-    height: 49px;
-    line-height: 49px;
+    /*height: 49px;*/
+    line-height: 38px;
     padding-bottom: 15px;
 }
 .search .jump-search{
@@ -267,9 +267,9 @@ body{
 }
 /*搜索页面*/
 .search input{
-    /*height: 38px;*/
-    /*line-height: 38px;*/
-    width: 100%;
+    height: 38px;
+    line-height: 38px;
+    width: 65%;
     padding: 0 12%;
     display: inline-block;
     border-radius: 38px;
@@ -403,7 +403,7 @@ body{
     position: fixed;
     width: 100%;
     z-index: 2;
-    top: 150px;
+    top: 140px;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.41);
 }
@@ -425,10 +425,12 @@ body{
 }
 .place-list{
     background: #fff;
-    width: 50%;
-    position: relative;
-    height: 55%;
     overflow: scroll;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 55%;
 }
 .condition-list .active{
     border-color: #c21a00;
@@ -463,12 +465,12 @@ body{
 }
 .second-menu{
     position: absolute;
-    left: 100%;
-    width: 100%;
     top: 0;
     background: #fafafa;
-    height: 100%;
-    /*border-top: 1px solid #ebebeb;*/
+    right: 0;
+    width: 50%;
+    height: 55%;
+    overflow: scroll;
 }
 .second-menu::after{
     content: '';
@@ -483,15 +485,11 @@ body{
     font-size: 13px;
     color: #333;
     border-bottom: 1px solid #ebebeb;
+    line-height: 45px;
+    height: 45px;
 }
 .second-menu em{
     float: right;
-}
-.place-list-li .second-menu{
-    display: none;
-}
-.active .second-menu{
-    display: block;
 }
 /*法院列表*/
 .court-list{
@@ -668,4 +666,23 @@ body{
 }
 .home-item img{
     padding: 0;
+}
+.second-menu .active{
+    color:#c21a00;
+}
+#app-index .mint-loadmore{
+    padding-top: 0;
+}
+.mint-loadmore{
+    padding-top: 140px;
+}
+.court-page .second-menu{
+    height: 100%;
+}
+#court .place-list .active .place-left {
+    background: #fafafa;
+    color: #c21a00;
+}
+.court-home .mint-loadmore{
+    padding-top: 0;
 }

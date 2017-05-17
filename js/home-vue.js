@@ -1,24 +1,19 @@
 var page = 1;
-var auctionMode,purchaseMethod,Status;
+var hotkey,goodsType;
 var child1 = new Vue({
-    el: '#all-list-all',
+    el: '#court-page',
     data: {
-        list: [],
-        type: [],
-        citylist:[],
-        courtlist:[],
-        getCitys:[],
-        choosecitys:[]
+        court: [],
+        list:[],
     },
     created: function () {
-        this.getList();
+        this.getPlace();
         this.getType();
-        this.getCity();
     },
     methods: {
         //时间格式化
-        timeForamt: function getLocalTime(nS) {
-            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/, ' ');
+        timeForamt:function getLocalTime(nS) {
+            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
         },
         //获取type样式
         getType(){
@@ -42,51 +37,30 @@ var child1 = new Vue({
                 }
             });
         },
-        //获取二级城市列表
-        choosecity(event){
+        //获取法院详情
+        getPlace(){
             var _this=this;
-            cityId=event.currentTarget.id;
             //使用ajax
             $.ajax({
-                url:"http://211.149.156.151:81/api/Index/getCityCourt.html",
+                url:"http://211.149.156.151:81/api/Index/courtInf.html",
                 dataType: 'jsonp',
                 data: {
-                    cityId:cityId,
+                    courtId:courtId,
                 },
                 type: "post",
                 jsonp: 'callback',
                 success: function (data) {
                     console.log(data.data);
-                    _this.choosecitys = data.data;
+                    _this.court = data.data.inf;
+                    _this.list = data.data.list;
+                    console.log(_this.court);
                 },
                 error: function () {
                     console.log('请求错误');
                 }
             });
         },
-        //获取所在地区
-        getCity(){
-            var _this=this;
-            //使用ajax
-            $.ajax({
-                url:"http://211.149.156.151:81/api/Index/city.html",
-                dataType: 'jsonp',
-                data: {
-                    page:1,
-                    pageSize:"10"
-                },
-                type: "post",
-                jsonp: 'callback',
-                success: function (data) {
-                    console.log(data.data);
-                    _this.getCitys = data.data;
-                },
-                error: function () {
-                    console.log('请求错误');
-                }
-            });
-        },
-        //筛选所在地新数据
+//筛选所在地新数据
         getNew(event){
             cityId = event.currentTarget.id;
             this.search();
@@ -142,100 +116,38 @@ var child1 = new Vue({
                 }
             });
         },
-        //获取城市法院所在地
-        getcourt(){
-            var _this=this;
-            //使用ajax
-            $.ajax({
-                url:"http://211.149.156.151:81/api/Index/city.html",
-                dataType: 'jsonp',
-                data: {
-                    page:1,
-                    pageSize:"10"
-                },
-                type: "post",
-                jsonp: 'callback',
-                success: function (data) {
-                    console.log(data.data);
-                    _this.courtlist = data.data;
-                },
-                error: function () {
-                    console.log('请求错误');
-                }
-            });
-        },
-        //获取数据
-        getList(){
-            var _this = this;
-            //使用ajax
-            $.ajax({
-                url: "http://211.149.156.151:81/api/Index/index.html",
-                dataType: 'jsonp',
-                data: {
-                    page: page,
-                    cityId:cityId,
-                    typeId:typeId,
-                    goodsType:goodsType,
-                    searchKey:searchKey,
-                    pageSize: "10"
-                },
-                type: "post",
-                jsonp: 'callback',
-                success: function (data) {
-                    $("#all-list").hide();
-                    console.log(data.data);
-                    _this.subjects = data.data.type;
-                    _this.list = data.data.hot.list;
-                },
-                error: function () {
-                    console.log('请求错误');
-                }
-            });
-        },
-        //下拉获取数据
         loadBottom(){
             //显示底部提示
             $(".mint-loadmore-bottom").show();
-            var _this = this;
+            var _this=this;
             //使用ajax
             $.ajax({
-                url: "http://211.149.156.151:81/api/Index/index.html",
+                url:"http://211.149.156.151:81/api/Index/index.html",
                 dataType: 'jsonp',
                 data: {
-                    page: page,
-                    cityId:cityId,
-                    typeId:typeId,
-                    goodsType:goodsType,
-                    searchKey:searchKey,
-                    auctionMode:auctionMode,
-                    purchaseMethod:purchaseMethod,
-                    status:Status,
-                    pageSize: "10"
+                    page:page,
+                    pageSize:"10"
                 },
                 type: "post",
                 jsonp: 'callback',
                 success: function (data) {
                     var new_data = [];
                     console.log(_this.list);
-                    data.data.hot.list.forEach(function (item, index) {
+                    data.data.hot.list.forEach(function (item,index) {
                         new_data = _this.list.push(item)
                     });
                     page++;
                     // 若数据已全部获取完毕
                     $(".mint-loadmore-bottom").hide();
-                    $(".mint-loadmore-content").css("transform","transform: translate3d(0px, 0px, 0px);");
+                    $(".mint-loadmore-content").css("transform","transform: translate3d(0px, 0px, 0px);")
                 },
                 error: function () {
                     // 若数据已全部获取完毕
                     $(".mint-loadmore-bottom").hide();
-                    $(".mint-loadmore-content").css("transform", "transform: translate3d(0px, 0px, 0px);");
+                    $(".mint-loadmore-content").css("transform","transform: translate3d(0px, 0px, 0px);")
                     console.log('请求错误');
                 }
             });
         },
-        handleBottomChange(status){
-            this.bottomStatus = status;
-        }
-
     },
 });

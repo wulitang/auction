@@ -22,33 +22,35 @@
     <div class="head">
         <h1>汇融拍卖</h1>
         <div class="search">
-            <div  v-on:click="showSearch" data-num="1" class="jump-search">请输入拍品名称</div>
+            <a href="/auction/auction/search.html" class="jump-search">请输入拍品名称</a>
         </div>
     </div>
     <!--首页小图标菜单-->
     <ul class="menu clearfix">
         <li v-for="todo in subjects" v-bind:id="todo.id">
             <div>
-                <img v-bind:src="todo.logo" v-bind:alt="todo.name">
-                <span v-text="todo.name"></span>
+                <a v-bind:href="'/auction/auction/all.html?typeId=' + todo.id ">
+                    <img v-bind:src="todo.logo" v-bind:alt="todo.name">
+                    <span v-text="todo.name"></span>
+                </a>
             </div>
         </li>
     </ul>
     <!--法院拍卖-->
     <div class="court">
         <div class="court-left">
-            <div v-on:click="showSearch" data-num="2">
+            <div v-on:click="showSearch">
                 <img src="img/court.png">
             </div>
         </div>
         <div class="court-right">
             <div class="court-right-1">
-                <a href="/auction/all.html?goodsType=2">
+                <a href="/auction/auction/all.html?goodsType=2">
                     <img src="img/gongyi.png">
                 </a>
             </div>
             <div class="court-right-2">
-                <a href="/auction/all.html?goodsType=3">
+                <a href="/auction/auction/all.html?goodsType=3">
                 <img src="img/yishu.png">
                 </a>
             </div>
@@ -58,12 +60,12 @@
     <!--海关拍卖-->
     <div class="entrust clearfix">
         <div class="customs">
-            <a href="/auction/all.html?goodsType=4">
+            <a href="/auction/auction/all.html?goodsType=4">
                 <img src="img/customs.png">
             </a>
         </div>
         <div class="society">
-            <a href="/auction/all.html?goodsType=5">
+            <a href="/auction/auction/all.html?goodsType=5">
                 <img src="img/society.png">
             </a>
         </div>
@@ -88,35 +90,9 @@
         </ul>
     </mt-loadmore>
     <!--搜索-->
-    <div class="indx-search" v-bind:class="{ show:isShow }" name="fade">
-        <!--热门搜索-->
-        <div class="goods-page" v-if="goodsShow === '1'">
-            <!--顶部搜索-->
-            <div class="common-head">
-                <i class="go-back" v-on:click="hideSearch"></i>
-                <h1>搜索</h1>
-                <div class="search">
-                    <mt-search
-                            v-model="value"
-                            cancel-text="取消"
-                            placeholder="请输入拍品名称">
-                    </mt-search>
-                    <!--<input placeholder="请输入拍品名称"/>-->
-                    <em>取消</em>
-                </div>
-            </div>
-            <!--热门搜索-->
-            <div class="hot-search">
-                <h3>热门搜索</h3>
-                <ul class="clearfix" >
-                    <li v-for="item in hotSearch">
-                        <a class="over" v-bind:href="'/auction/all.html?key=' + item.key " v-text="item.key"></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <div class="indx-search" v-bind:class="{ show:isShow }">
         <!--法院拍卖-->
-        <div class="court-page" v-else>
+        <div class="court-page">
             <div class="common-head">
                 <i class="go-back" v-on:click="hideSearch"></i>
                 <h1>法院拍卖</h1>
@@ -124,7 +100,7 @@
             <div class="hot-search">
                 <ul class="clearfix">
                     <li v-for="item in hotSearch" v-bind:data-id=item.id>
-                        <a class="over" v-bind:href="'/auction/court.html?cityId=' + item.id " v-text="item.cityName"></a>
+                        <a class="over" v-bind:href="'/auction/auction/court.html?cityId=' + item.id " v-text="item.cityName"></a>
                     </li>
                 </ul>
             </div>

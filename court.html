@@ -16,20 +16,24 @@
     <h1>法院列表</h1>
 </div>
 <!--court list-->
-<div class="court-list">
+<div class="court-list" id="court">
     <ul class="place-list">
-        <li class="place-list-li active">
+        <li v-for="types in Citytype" class="place-list-li" :id="types.id" @click="getNext">
             <div class="place-left">
-                <span>全部</span>
-                <em>(7)</em>
+                <span>{{types.cityName}}</span>
+                <em>({{types.co}})</em>
             </div>
-            <ul class="second-menu">
-                <li>
-                    <a href="court-home.html">
-                        <span class="over">重庆市高级人民法院（7）</span>
-                    </a>
-                </li>
-            </ul>
+        </li>
+        <!--<li v-for="types in type" :id="types.id" @click="getAll">-->
+            <!--<span>{{types.name}}</span>-->
+            <!--<em>{{types.co}}</em>-->
+        <!--</li>-->
+    </ul>
+    <ul class="second-menu">
+        <li v-for="item in cityTwo" :id="item.id" @click="getNext">
+            <a v-bind:href="'/auction/auction/court-home.html?courtId=' + item.id ">
+                <span class="over">{{item.courtName}}（{{item.count}}）</span>
+            </a>
         </li>
     </ul>
 </div>
@@ -38,6 +42,27 @@
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
+<script>
+    //获取url上面的参数，有类似方法getQueryString
+    function getPar (par) {
+        //获取当前URL
+        var local_url = document.location.href;
+        //获取要取得的get参数位置
+        var get = local_url.indexOf(par + '=');
+        if (get == -1) {
+            return false;
+        }
+        //截取字符串
+        var get_par = local_url.slice(par.length + get + 1);
+        //判断截取后的字符串是否还有其他get参数
+        var nextPar = get_par.indexOf('&');
+        if (nextPar != -1) {
+            get_par = get_par.slice(0, nextPar);
+        }
+        return get_par;
+    };
+    var cityId = getPar("cityId");
+</script>
 <script type="text/javascript" src="js/court-vue.js"></script>
 </body>
 </html>

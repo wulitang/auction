@@ -1,35 +1,14 @@
-var page = 1;
-var hotkey,goodsType;
+var cityTwo;
 var child1 = new Vue({
-    el: '#all-list-all',
+    el: '#court',
     data: {
-        list: [],
-        type: [],
-        searchKey: "",
+        Citytype: [],
+        cityTwo:[]
     },
     created: function () {
-        this.getList();
-        this.getType();
+        this.getPlace();
     },
     methods: {
-        //获取url上面的参数，有类似方法getQueryString
-        getPar: function (par) {
-            //获取当前URL
-            var local_url = document.location.href;
-            //获取要取得的get参数位置
-            var get = local_url.indexOf(par + '=');
-            if (get == -1) {
-                return false;
-            }
-            //截取字符串
-            var get_par = local_url.slice(par.length + get + 1);
-            //判断截取后的字符串是否还有其他get参数
-            var nextPar = get_par.indexOf('&');
-            if (nextPar != -1) {
-                get_par = get_par.slice(0, nextPar);
-            }
-            return get_par;
-        },
         //获取所在地区
         getPlace(){
             var _this=this;
@@ -39,13 +18,59 @@ var child1 = new Vue({
                 dataType: 'jsonp',
                 data: {
                     page:1,
+                    cityId:cityId,
                     pageSize:"10"
                 },
                 type: "post",
                 jsonp: 'callback',
                 success: function (data) {
                     console.log(data.data);
-                    _this.type = data.data;
+                    _this.Citytype = data.data;
+                     cityTwo =data.data[0].id;
+                     console.log(cityTwo);
+                        $.ajax({
+                            url:"http://211.149.156.151:81/api/Index/court.html",
+                            dataType: 'jsonp',
+                            data: {
+                                page:1,
+                                cityId:cityTwo,
+                                pageSize:"10"
+                            },
+                            type: "post",
+                            jsonp: 'callback',
+                            success: function (data) {
+                                console.log(data.data);
+                                _this.cityTwo = data.data;
+                            },
+                            error: function () {
+                                console.log('请求错误');
+                            }
+                        });
+                },
+                error: function () {
+                    console.log('请求错误');
+                }
+            });
+        },
+        //获取法院列表
+        getNext(event){
+             cityTwo = event.currentTarget.id;
+            console.log(cityTwo);
+            var _this=this;
+            //使用ajax
+            $.ajax({
+                url:"http://211.149.156.151:81/api/Index/court.html",
+                dataType: 'jsonp',
+                data: {
+                    page:1,
+                    cityId:cityTwo,
+                    pageSize:"10"
+                },
+                type: "post",
+                jsonp: 'callback',
+                success: function (data) {
+                    console.log(data.data);
+                    _this.cityTwo = data.data;
                 },
                 error: function () {
                     console.log('请求错误');

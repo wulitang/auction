@@ -8,6 +8,37 @@
     <link href="./css/index.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-
+<!--热门搜索-->
+<div class="goods-page" id="search">
+    <!--顶部搜索-->
+    <div class="common-head">
+        <i class="go-back"  onclick="javascript:history.back(-1);"></i>
+        <h1>搜索</h1>
+        <div class="search">
+            <!--<mt-search-->
+            <!--v-model="value"-->
+            <!--cancel-text="取消"-->
+            <!--placeholder="请输入拍品名称">-->
+            <!--</mt-search>-->
+            <input placeholder="请输入拍品名称"/>
+            <em>搜索</em>
+        </div>
+    </div>
+    <!--热门搜索-->
+    <div class="hot-search">
+        <h3>热门搜索</h3>
+        <ul class="clearfix" >
+            <li v-for="item in hotSearch">
+                <a class="over" v-bind:href="'/auction/auction/all.html?key=' + item.key " v-text="item.key"></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="js/search-vue.js"></script>
 </body>
 </html>

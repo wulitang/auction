@@ -14,7 +14,7 @@
 <!--顶部搜索+筛选-->
 <div class="fix-top" id="choose">
     <div class="common-head">
-        <i class="go-back"  onclick="javascript:history.back(-1);"></i>
+        <i class="go-back" onclick="javascript:history.back(-1);"></i>
         <h1>全部</h1>
         <div class="search">
             <a href="" class="jump-search">请输入拍品名称</a>
@@ -33,181 +33,62 @@
 <!--筛选弹窗-->
 <div class="choose-min-1" style="display: none">
     <ul class="all-list choose-item" style="display: none">
-        <li v-for="types in type">
+        <li v-for="types in type" :id="types.id" @click="getAll">
             <span>{{types.name}}</span>
             <em>{{types.co}}</em>
         </li>
     </ul>
-    <ul class="place-list choose-item" style="display: none">
-        <li class="place-list-li active">
-            <div class="place-left">
-                <span>全部</span>
-                <em>(7)</em>
-            </div>
-            <ul class="second-menu">
-                <li>
-                    <span>重庆市</span>
-                    <em>(7)</em>
-                </li>
-            </ul>
-        </li>
-        <li class="place-list-li">
-            <div class="place-left">
-                <span>全部</span>
-                <em>(7)</em>
-            </div>
-            <ul class="second-menu">
-                <li>
-                    <span>重庆市</span>
-                    <em>(7)</em>
-                </li>
-            </ul>
-        </li>
-        <li class="place-list-li">
-            <div class="place-left">
-                <span>全部</span>
-                <em>(7)</em>
-            </div>
-            <ul class="second-menu">
-                <li>
-                    <span>重庆市</span>
-                    <em>(7)</em>
-                </li>
-            </ul>
-        </li>
-        <li class="place-list-li">
-            <div class="place-left">
-                <span>全部</span>
-                <em>(7)</em>
-            </div>
-            <ul class="second-menu">
-                <li>
-                    <span>重庆市</span>
-                    <em>(7)</em>
-                </li>
-            </ul>
-        </li>
-        <li class="place-list-li">
-            <div class="place-left">
-                <span>全部</span>
-                <em>(7)</em>
-            </div>
-            <ul class="second-menu">
-                <li>
-                    <span>重庆市</span>
-                    <em>(7)</em>
-                </li>
-            </ul>
-        </li>
-        <li class="place-list-li">
-            <div class="place-left">
-                <span>全部</span>
-                <em>(7)</em>
-            </div>
-            <ul class="second-menu">
-                <li>
-                    <span>重庆市</span>
-                    <em>(7)</em>
-                </li>
-            </ul>
-        </li>
-        <li class="place-list-li">
-            <div class="place-left">
-                <span>全部</span>
-                <em>(7)</em>
-            </div>
-            <ul class="second-menu">
-                <li>
-                    <span>重庆市</span>
-                    <em>(7)</em>
-                </li>
-            </ul>
-        </li>
-        <li class="place-list-li">
-            <div class="place-left">
-                <span>全部</span>
-                <em>(7)</em>
-            </div>
-            <ul class="second-menu">
-                <li>
-                    <span>重庆市</span>
-                    <em>(7)</em>
-                </li>
-            </ul>
-        </li>
-        <li class="place-list-li">
-            <div class="place-left">
-                <span>全部</span>
-                <em>(7)</em>
-            </div>
-            <ul class="second-menu">
-                <li>
-                    <span>重庆市</span>
-                    <em>(7)</em>
-                </li>
-            </ul>
-        </li>
-        <li class="place-list-li">
-            <div class="place-left">
-                <span>全部</span>
-                <em>(7)</em>
-            </div>
-            <ul class="second-menu">
-                <li>
-                    <span>重庆市</span>
-                    <em>(7)</em>
-                </li>
-            </ul>
-        </li>
-        <li class="place-list-li">
-            <div class="place-left">
-                <span>全部</span>
-                <em>(7)</em>
-            </div>
-            <ul class="second-menu">
-                <li>
-                    <span>重庆市</span>
-                    <em>(7)</em>
-                </li>
-            </ul>
-        </li>
+    <div class="choose-item" style="display: none">
+        <ul class="place-list">
+            <!--点击获取二级城市-->
+            <li class="place-list-li" v-for="item in getCitys" :id="item.id" @click="choosecity">
+                <div class="place-left">
+                    <span>{{item.cityName}}</span>
+                    <!--<em>({{cityList.id}})</em>-->
+                </div>
+            </li>
+        </ul>
+        <ul class="second-menu">
+            <!--点击获取二级城市下的数据-->
+            <li v-for="courtLists in choosecitys" :id="courtLists.id" @click="getNew">
+                <span>{{courtLists.cityName}}</span>
+                <em>{{courtLists.co}}</em>
+            </li>
+        </ul>
+    </div>
 
-    </ul>
     <ul class="condition-list choose-item" style="display: none">
         <li class="one-buy hot-search">
             <h1>拍卖方式</h1>
             <ul class="clearfix" style="font-size: 0;">
-                <li>首拍</li>
-                <li>二拍</li>
-                <li>三拍</li>
-                <li>四拍</li>
-                <li>五拍</li>
+                <li id="1"  @click="getMode">首拍</li>
+                <li id="2" @click="getMode">二拍</li>
+                <li id="3" @click="getMode">三拍</li>
+                <li id="4" @click="getMode">四拍</li>
+                <li id="5" @click="getMode">五拍</li>
             </ul>
         </li>
         <li class="two-buy hot-search">
             <h1>购买方式</h1>
             <ul class="clearfix">
-                <li>不限购</li>
-                <li>可贷款</li>
+                <li id="1"  @click="getpurchase">不限购</li>
+                <li id="2"  @click="getpurchase">可贷款</li>
             </ul>
         </li>
         <li class="three-buy hot-search">
             <h1>状态</h1>
             <ul class="clearfix">
-                <li>还未开始</li>
-                <li>进行中</li>
-                <li>已结束</li>
+                <li id="1"  @click="getstatus">还未开始</li>
+                <li id="2"  @click="getstatus">进行中</li>
+                <li id="3"  @click="getstatus">已结束</li>
             </ul>
         </li>
         <div class="choose-button f-box">
-            <div class="flex-item">清除</div>
-            <div class="flex-item choose-sure">确定</div>
+            <div class="flex-item clear-active">清除</div>
+            <div class="flex-item choose-sure" @click="sureDate">确定</div>
         </div>
     </ul>
 </div>
-    <!--获取url-->
-    <div class="hide cityId">{{decodeURI(getPar("key"))}}</div>
-    <div class="hide goodsType">{{getPar("goodsType")}}</div>
     <mt-loadmore :bottom-method="loadBottom"  ref="loadmore"  @bottom-status-change="handleBottomChange">
         <ul class="hote">
             <li v-for="lists in list" class="clearfix">
@@ -228,29 +109,30 @@
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-<script type="text/javascript" src="js/all-vue.js"></script>
 <script>
-    //all页面异步请求
-//    $.ajax({
-//        url:"http://211.149.156.151:81/api/Index/type.html",
-//        dataType: 'jsonp',
-//        data: {
-//            page:1,
-//            pageSize:"10"
-//        },
-//        type: "post",
-//        jsonp: 'callback',
-//        success: function (data) {
-//            for(var i=0;i<data.data.length;i++){
-//                var newStr=''+'<li><span>'+data.name+'</span><em>'+data.co+'</em></li>';
-//            }
-//            console.log(data.data);
-//            $(".all-list ").append(newStr)
-//        },
-//        error: function () {
-//            console.log('请求错误');
-//        }
-//    });
+    //获取url上面的参数，有类似方法getQueryString
+    function getPar (par) {
+        //获取当前URL
+        var local_url = document.location.href;
+        //获取要取得的get参数位置
+        var get = local_url.indexOf(par + '=');
+        if (get == -1) {
+            return false;
+        }
+        //截取字符串
+        var get_par = local_url.slice(par.length + get + 1);
+        //判断截取后的字符串是否还有其他get参数
+        var nextPar = get_par.indexOf('&');
+        if (nextPar != -1) {
+            get_par = get_par.slice(0, nextPar);
+        }
+        return get_par;
+    };
+    var searchKey = getPar("searchKey");
+    var cityId = getPar("cityId");
+    var goodsType = getPar("goodsType");
+    var typeId = getPar("typeId");
 </script>
+<script type="text/javascript" src="js/all-vue.js"></script>
 </body>
 </html>
