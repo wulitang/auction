@@ -69,7 +69,7 @@ var child1 = new Vue({
                 success: function (data) {
                     console.log(_this.list);
                     data.data.hot.list.forEach(function (item,index) {
-                        _this.list.push(item)
+                        _this.list.push(item);
                     });
                     page++;
                     // 若数据已全部获取完毕

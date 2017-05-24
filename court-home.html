@@ -19,7 +19,7 @@
 <div id="court-page">
     <div class="fix-top">
         <div class="common-head">
-            <i class="go-back"></i>
+            <i class="go-back" onclick="javascript:history.back(-1);"></i>
             <h1>法院主页</h1>
         </div>
         <div class="court-home clearfix">
@@ -34,8 +34,8 @@
         </div>
         <!--选项卡切换-->
         <ul class="f-box choose-court">
-            <li class="flex-item first-court choose-active">标的</li>
-            <li class="flex-item" @click="getnotice">公告</li>
+            <li class="flex-item first-court choose-active">标的（{{court.subjectNumber}}）</li>
+            <li class="flex-item" @click="getnotice">公告（{{court.noticeNumber}}）</li>
         </ul>
         <div class="choose">
             <ul class="choose-condition f-box">

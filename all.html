@@ -96,14 +96,39 @@
     <mt-loadmore :bottom-method="loadBottom"  ref="loadmore"  @bottom-status-change="handleBottomChange">
         <ul class="hote">
             <li v-for="lists in list" class="clearfix">
-                <a v-bind:href="lists.goodsUrl">
-                    <img v-bind:src="lists.img">
-                    <div class="desc">
-                        <div class="title over-two" v-text="lists.goodsName"></div>
-                        <div class="pic over">起拍价格：<em v-text="lists.price"></em><i>元</i></div>
-                        <div class="time over"><em>开始时间：</em>{{timeForamt(lists.goodsDates)}}</div>
-                    </div>
-                </a>
+                <div v-if="lists.status ==1">
+                    <a class="time-over" v-bind:href="lists.goodsUrl">
+                        <span class="hide">{{new Date()}}</span>
+                        <img v-bind:src="lists.img">
+                        <div class="desc">
+                            <div class="title over-two" v-text="lists.goodsName"></div>
+                            <div class="pic over">起拍价格：<em>{{priceForamt(lists.price)}}</em><i>元</i></div>
+                            <div class="time over"><em>开始时间：</em>{{timeForamt(lists.goodsDates)}}</div>
+                        </div>
+                    </a>
+                </div>
+                <div v-if="lists.goodsDatee*1000 < new Date()">
+                    <a class="time-over" v-bind:href="lists.goodsUrl">
+                        <span class="hide">{{new Date().getTime()}}</span>
+                        <img v-bind:src="lists.img">
+                        <div class="desc">
+                            <div class="title over-two" v-text="lists.goodsName"></div>
+                            <div class="pic over">起拍价格：<em>{{priceForamt(lists.price)}}</em><i>元</i></div>
+                            <div class="time over"><em>开始时间：</em>{{timeForamt(lists.goodsDates)}}</div>
+                        </div>
+                    </a>
+                </div>
+                <div v-else>
+                    <a v-bind:href="lists.goodsUrl">
+                        <span class="hide">{{lists.status}}</span>
+                        <img v-bind:src="lists.img">
+                        <div class="desc">
+                            <div class="title over-two" v-text="lists.goodsName"></div>
+                            <div class="pic over">起拍价格：<em>{{priceForamt(lists.price)}}</em><i>元</i></div>
+                            <div class="time over"><em>开始时间：</em>{{timeForamt(lists.goodsDates)}}</div>
+                        </div>
+                    </a>
+                </div>
             </li>
         </ul>
     </mt-loadmore>
